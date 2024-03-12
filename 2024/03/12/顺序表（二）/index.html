@@ -4,8 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="second, myblog">
-    <meta name="description" content="">
+    <meta name="keywords" content="myblog">
+    <meta name="description" content="顺序表的基本操作—插入ListInsert(&amp;amp;L,i,e):插入操作。在表中的第i个位置上插入指定元素e。代码示例：
+&amp;#x2F;&amp;#x2F;插入元素
+bool ListInsert(SqList &amp;amp;L ,int i,int">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +19,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>second | myblog</title>
+    <title>myblog</title>
     <link rel="icon" type="image/png" href="/magichouse.github.io/favicon.png">
     
 
@@ -269,12 +271,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/magichouse.github.io/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/magichouse.github.io/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">second</h1>
+                    <h1 class="description center-align post-title"></h1>
                 </div>
             </div>
         </div>
@@ -310,7 +312,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-11-01
+                    2024-03-12
                 </div>
                 
 
@@ -319,14 +321,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    890
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -349,7 +351,63 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="顺序表的基本操作—插入"><a href="#顺序表的基本操作—插入" class="headerlink" title="顺序表的基本操作—插入"></a>顺序表的基本操作—插入</h2><p>ListInsert(&amp;L,i,e):插入操作。在表中的第i个位置上插入指定元素e。<br>代码示例：</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;&#x2F;插入元素
+bool ListInsert(SqList &amp;L ,int i,int e) &#123;&#x2F;&#x2F;在L的位序i处插入元素e
+	if (i&lt;1 || i&gt;L.length+1) &#123;&#x2F;&#x2F;判断i的范围是否有效    i属于[1，L.length+1]
+		return false;
+	&#125;
+	if (L.length &gt;&#x3D; MaxSize) &#123;&#x2F;&#x2F;判断当前空间是否存满
+		return false;
+	&#125;
+	for (int j &#x3D; L.length; j &gt;&#x3D; i; j--) &#123;&#x2F;&#x2F;将第i个元素及之后的元素进行后移
+	                                    &#x2F;&#x2F;先移动最后面的元素
+		L.data[j] &#x3D; L.data[j - 1];
+	&#125;
+	L.data[i-1] &#x3D; e;&#x2F;&#x2F;在位序i处插入元素e
+	L.length++;&#x2F;&#x2F;长度加1
+	return true;
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="插入操作的时间复杂度"><a href="#插入操作的时间复杂度" class="headerlink" title="插入操作的时间复杂度"></a>插入操作的时间复杂度</h3><h4 id="问题规模：n-length-表长"><a href="#问题规模：n-length-表长" class="headerlink" title="问题规模：n.length (表长)"></a>问题规模：n.length (表长)</h4><p>①最好的情况：新元素插入到表尾，不需要移动元素<br>               i&#x3D;n+1(位序),循环0次，此时的时间复杂度为O(1)<br>②最坏的情况：新元素插入到表头，需要将原有的n个元素全部向后移动<br>               i&#x3D;1(位序),循环n次，此时的时间复杂度为O(n)<br>③平均情况：假设新元素插入到任何一个位置的概率相同，即i&#x3D;1,2,3,…,length+1的概率<br>             都是p&#x3D;1&#x2F;n+1。<br>             i&#x3D;1,循环n次;i&#x3D;2,循环n-1次;….，i&#x3D;n(length),循环1次；i&#x3D;n+1(length+1),循环0次<br>             平均循环次数为n&#x2F;2次,此时的时间复杂度为O(n)</p>
+<h2 id="顺序表的基本操作—删除"><a href="#顺序表的基本操作—删除" class="headerlink" title="顺序表的基本操作—删除"></a>顺序表的基本操作—删除</h2><p>ListDelete(&amp;L,i,&amp;e)：删除操作。删除表L中第i个位置的元素，并用e返回删除元素的值。<br>代码示例：</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;&#x2F;删除元素
+bool ListDelete(SqList &amp;L,int i,int &amp;e) &#123;
+	if (i&lt;1 || i&gt;L.length) &#123;&#x2F;&#x2F;判断i的范围是否有效
+		return false;
+	&#125;
+	e &#x3D; L.data[i - 1];&#x2F;&#x2F;将被删除的元素赋值给e
+	for (int j &#x3D; i; j &lt;&#x3D; L.length; j++) &#123;&#x2F;&#x2F;将第i个位置后的元素前移，先移动前面的元素
+		L.data[j - 1] &#x3D; L.data[j];
+	&#125;
+	L.length--;&#x2F;&#x2F;线性表长度减1
+	return true;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="删除操作的时间复杂度"><a href="#删除操作的时间复杂度" class="headerlink" title="删除操作的时间复杂度"></a>删除操作的时间复杂度</h3><h4 id="问题规模：n-length-表长-1"><a href="#问题规模：n-length-表长-1" class="headerlink" title="问题规模：n.length (表长)"></a>问题规模：n.length (表长)</h4><p>①最好的情况：删除表尾元素，不需要移动其他元素<br>               i&#x3D;n(位序),循环0次，此时的时间复杂度为O(1)<br>②最坏的情况：删除表头元素，需要将后续的n-1个元素全部向前移动<br>               i&#x3D;1(位序),循环n-1次，此时的时间复杂度为O(n)<br>③平均情况：假设删除任何一个元素的概率相同，即i&#x3D;1,2,3,…,length的概率<br>             都是p&#x3D;1&#x2F;n。<br>             i&#x3D;1,循环n-1次;i&#x3D;2,循环n-2次;….，i&#x3D;n(length),循环0次；<br>             平均循环次数为n-1&#x2F;2次,此时的时间复杂度为O(n)<br>主函数：</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">int main()&#123;
+	SqList L;
+	InitList(L);
+	ListInsert(L, 1, 11);
+	ListInsert(L, 2, 12);
+	ListInsert(L, 3, 13);
+	ListInsert(L, 4, 14);
+	ListInsert(L, 5, 15);
+	ListInsert(L, 6, 16);
+	ListInsert(L, 7, 17);
+	ListInsert(L, 8, 18);
+	for (int i &#x3D; 0; i &lt; MaxSize; i++) &#123;
+		printf(&quot;data[%d]&#x3D; %d\n&quot;, i,L.data[i]);
+	&#125;
+	int e &#x3D; -1;&#x2F;&#x2F;用变量e将删除的元素“带回来”
+	ListDelete(L, 3, e);
+	for (int i &#x3D; 0; i &lt; MaxSize; i++) &#123;
+		printf(&quot;data[%d]&#x3D; %d\n&quot;, i, L.data[i]);
+	&#125;
+	return 0;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>执行初始化，插入，删除操作后打印出的结果：<br><img src="https://xiaomingqaq-1322142151.cos.ap-beijing.myqcloud.com/BlogPicture%2F%E9%A1%BA%E5%BA%8F%E8%A1%A8%E6%8F%92%E5%85%A5%E5%88%A0%E9%99%A4.jpg"></p>
+
                 
             </div>
             <hr/>
@@ -375,7 +433,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://xiaomqaq.github.io/magichouse.github.io/magichouse.github.io/2023/11/01/second/">https://xiaomqaq.github.io/magichouse.github.io/magichouse.github.io/2023/11/01/second/</a>
+                    <a href="https://xiaomqaq.github.io/magichouse.github.io/magichouse.github.io/2024/03/12/%E9%A1%BA%E5%BA%8F%E8%A1%A8%EF%BC%88%E4%BA%8C%EF%BC%89/">https://xiaomqaq.github.io/magichouse.github.io/magichouse.github.io/2024/03/12/%E9%A1%BA%E5%BA%8F%E8%A1%A8%EF%BC%88%E4%BA%8C%EF%BC%89/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -456,11 +514,12 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/magichouse.github.io/2023/12/03/1.1%E5%9B%A0%E7%89%B9%E7%BD%91%E6%A6%82%E8%BF%B0/">
+                <a href="/magichouse.github.io/2024/03/12/%E9%A1%BA%E5%BA%8F%E8%A1%A8%EF%BC%88%E4%BA%8C%EF%BC%89/">
                     <div class="card-image">
                         
                         
@@ -476,21 +535,18 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-12-03
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-12
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/magichouse.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-category">
-                                    计算机网络
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Xiao Ming
                             
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -501,13 +557,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/magichouse.github.io/2023/10/31/first/">
+                <a href="/magichouse.github.io/2024/03/10/%E9%A1%BA%E5%BA%8F%E8%A1%A8(%E4%B8%80)/">
                     <div class="card-image">
                         
                         
-                        <img src="/magichouse.github.io/medias/featureimages/0.jpg" class="responsive-img" alt="first">
+                        <img src="/magichouse.github.io/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">first</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -518,7 +574,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-10
                             </span>
                         <span class="publish-author">
                             
@@ -716,7 +772,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">923</span>
+                        class="white-color">1.6k</span>
             
             
             
