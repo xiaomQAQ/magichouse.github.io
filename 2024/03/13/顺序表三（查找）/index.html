@@ -4,12 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="顺序表（一）, myblog">
-    <meta name="description" content="顺序表实现静态分配#include &amp;lt;stdio.h&gt;
-#define MaxSize  10//定义最大长度
+    <meta name="keywords" content="顺序表三 （查找）, myblog">
+    <meta name="description" content="按位查找  GetElem(L,i)：按位查找操作。获取表L中第i个位置的元素的值
+#define MaxSize  10&amp;#x2F;&amp;#x2F;定义最大长度
 typedef struct&amp;#123;
-	int data[MaxSize];//用静态数组存放数据元素
-	int le">
+	int data[MaxSize];">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +20,7 @@ typedef struct&amp;#123;
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>顺序表（一） | myblog</title>
+    <title>顺序表三 （查找） | myblog</title>
     <link rel="icon" type="image/png" href="/magichouse.github.io/favicon.png">
     
 
@@ -273,12 +272,12 @@ typedef struct&amp;#123;
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/magichouse.github.io/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/magichouse.github.io/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">顺序表（一）</h1>
+                    <h1 class="description center-align post-title">顺序表三 （查找）</h1>
                 </div>
             </div>
         </div>
@@ -323,7 +322,7 @@ typedef struct&amp;#123;
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-03-10
+                    2024-03-13
                 </div>
                 
 
@@ -332,14 +331,14 @@ typedef struct&amp;#123;
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    746
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
 
@@ -362,61 +361,99 @@ typedef struct&amp;#123;
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="顺序表实现"><a href="#顺序表实现" class="headerlink" title="顺序表实现"></a>顺序表实现</h2><h3 id="静态分配"><a href="#静态分配" class="headerlink" title="静态分配"></a>静态分配</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">MaxSize</span>  <span class="token expression"><span class="token number">10</span></span><span class="token comment">//定义最大长度</span></span>
-<span class="token keyword">typedef</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span>
-	<span class="token keyword">int</span> data<span class="token punctuation">[</span>MaxSize<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">//用静态数组存放数据元素</span>
-	<span class="token keyword">int</span> length<span class="token punctuation">;</span><span class="token comment">//当前长度</span>
-<span class="token punctuation">&#125;</span>SqList<span class="token punctuation">;</span><span class="token comment">//顺序表类型定义</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>给各个数据元素分配连续的存储空间，大小为MaxSize * sizeof(int) [本例中数据元素data的类型为int型]</p>
-<h4 id="基本操作–初始化"><a href="#基本操作–初始化" class="headerlink" title="基本操作–初始化"></a>基本操作–初始化</h4><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//顺序表初始化</span>
-<span class="token keyword">void</span> <span class="token function">InitList</span><span class="token punctuation">(</span>SqList<span class="token operator">&amp;</span> L<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> MaxSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-		L<span class="token punctuation">.</span>data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token comment">//所有数据元素设置为默认初始值（可省略）</span>
-	<span class="token punctuation">&#125;</span>
-	L<span class="token punctuation">.</span>length <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token comment">//顺序表初始长度为0（不可省略）</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-	SqList L<span class="token punctuation">;</span><span class="token comment">//声明顺序表</span>
-	<span class="token function">InitList</span><span class="token punctuation">(</span>L<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//调用初始化函数初始化顺序表</span>
-	<span class="token comment">//......其他操作</span>
-	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>由于静态数组的存储空间是静态的，因此顺序表的表长无法进行更改，因此若数据存满则可以放弃治疗。<br>若刚开始设置的存储空间过大，则可能造成内存资源的浪费</p>
-<h2 id="动态分配"><a href="#动态分配" class="headerlink" title="动态分配"></a>动态分配</h2><pre class="line-numbers language-C" data-language="C"><code class="language-C">#include &lt;stdlib.h&gt;     &#x2F;&#x2F;malloc、free函数的头文件
-#define InitSize 10     &#x2F;&#x2F;顺序表初始长度
-typedef struct&#123;         
-int *data;              &#x2F;&#x2F;指示动态分配数组的指针
-int MaxSize;            &#x2F;&#x2F;顺序表最大容量
-int length;             &#x2F;&#x2F;顺序表的当前长度
-&#125;SeqList;               &#x2F;&#x2F;顺序表的类型定义（动态分配方式） <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>key：动态申请和释放内存空间<br>c语言中，常用malloc、free函数来进行动态申请以及释放内存空间<br>L.data &#x3D; &#x3D;&#x3D;(int * )&#x3D;&#x3D;  malloc (sizeof(int) *  InitSzie)<br>【注：1.此处为对应类型的指针，malloc函数执行后会返回一个指针，需要强制转换为之前所定义的数据元素类型的指针。】<br>C++中可以使用new、delete关键字。</p>
-<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">viod InitList(SeqList &amp;L)&#123;
-&#x2F;&#x2F;用 malloc函数申请一片连续的存储空间
-L.data&#x3D;malloc(InitSize * sizeof(int));
-L.length &#x3D; 0;
-L.MaxSize &#x3D; InitSize;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="动态增加数组的长度"><a href="#动态增加数组的长度" class="headerlink" title="动态增加数组的长度"></a>动态增加数组的长度</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">void IncreaseSize(SeqList &amp;L,int len)&#123;
-int *p &#x3D; L.data;
-L.data &#x3D; (int * )malloc((L.MaxSize + len)*sizeof(int));&#x2F;&#x2F;开辟新区域
-for(int i&#x3D;0 ;i&lt;L.length;i++)&#123;
-L.data[i] &#x3D; p[i];&#x2F;&#x2F;将数据复制到新区域（导致时间开销大）
+                <h2 id="按位查找"><a href="#按位查找" class="headerlink" title="按位查找"></a>按位查找</h2><p>  GetElem(L,i)：按位查找操作。获取表L中第i个位置的元素的值</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">#define MaxSize  10&#x2F;&#x2F;定义最大长度
+typedef struct&#123;
+	int data[MaxSize];&#x2F;&#x2F;用静态数组存放数据元素
+	int length;&#x2F;&#x2F;当前长度
+&#125;SqList;&#x2F;&#x2F;顺序表类型定义
+
+&#x2F;&#x2F;按位查找
+int GetElem(SqList L, int i) &#123;
+	return L.data[i - 1];
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  按位查找的函数的返回值应当与数据元素的类型相同。<br>  若采用动态分配方式实现顺序表时：</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">#define InitSize 10
+typedef struct&#123; 
+    int *data;
+    int MaxSize;
+    int length;
+&#125;SqlList;
+
+&#x2F;&#x2F;按位查找
+int GetElem(SqList L, int i) &#123;
+	return L.data[i - 1];
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>data指针指向了malloc函数所分配的空间的起始地址，例如起始地址为2000，指针的类型为int类型，占4B。data[0] 所对应的数据是从2000往后4个字节，以此类推可以查找出该顺序表所有的数据。往后取多少个由data指针的类型有关。</p>
+<h3 id="按位查找的时间复杂度"><a href="#按位查找的时间复杂度" class="headerlink" title="按位查找的时间复杂度"></a>按位查找的时间复杂度</h3><p>由于顺序表的各个数据元素在内存中连续存放，因此可以根据起始地址和数据元素大小立即找到第i个元素—“随机存取”特性。因此，按位查找的时间复杂度为O(1)。</p>
+<h2 id="按值查找"><a href="#按值查找" class="headerlink" title="按值查找"></a>按值查找</h2><p>LocateElem(L,e)：按值查找操作。在表L中查找具有给定关键字值的元素。</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">#define MaxSize  10&#x2F;&#x2F;定义最大长度
+typedef struct&#123;
+	int data[MaxSize];&#x2F;&#x2F;用静态数组存放数据元素
+	int length;&#x2F;&#x2F;当前长度
+&#125;SqList;&#x2F;&#x2F;顺序表类型定义
+
+&#x2F;&#x2F;按值查找:在顺序表中查找第一个元素值等于e的元素，并返回其位序
+int LocateElem(SqList L, int e) &#123;
+	for (int i &#x3D; 0; i &lt; L.length; i++) &#123;&#x2F;&#x2F;这里的i指的是数组下标
+		if (L.data[i] &#x3D;&#x3D; e);
+		return i + 1;&#x2F;&#x2F;数组下标为i的元素值等于e，返回其位序i+!
+	return 0;&#x2F;&#x2F;退出循环，说明查找失败
+	&#125;
 &#125;
-L.MaxSize&#x3D;L.MaxSize+len;&#x2F;&#x2F;顺序表最大长度长度增加len
-free(p);&#x2F;&#x2F;释放原来的内存空间
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>【注：由于p指针为局部变量，即当函数执行完成后自动释放内存】</p>
-<h3 id="主函数"><a href="#主函数" class="headerlink" title="主函数"></a>主函数</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">int main()&#123;
-SeqList L;
-InitList(L);
-&#x2F;&#x2F;......往顺序表中插入元素
-IncreaseSize(L,5);
-return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="顺序表特点"><a href="#顺序表特点" class="headerlink" title="顺序表特点"></a>顺序表特点</h2><p>①随机访问，即可以在O（1）时间内找到第i个元素。<br>②存储密度高，每个节点只存储数据元素<br>③拓展容量不方便（即使采用动态分配的方式实现，拓展长度的时间复杂度也较高）<br>④插入、删除操作不方便，需要移动大量元素</p>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>若采用动态分配方式实现顺序表时：</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">#define InitSize 10
+typedef struct&#123; 
+    int *data;
+    int MaxSize;
+    int length;
+&#125;SqlList;
+
+&#x2F;&#x2F;按值查找:在顺序表中查找第一个元素值等于e的元素，并返回其位序
+int LocateElem(SqList L, int e) &#123;
+	for (int i &#x3D; 0; i &lt; L.length; i++) &#123;&#x2F;&#x2F;这里的i指的是数组下标
+		if (L.data[i] &#x3D;&#x3D; e);
+		return i + 1;&#x2F;&#x2F;数组下标为i的元素值等于e，返回其位序i+!
+	return 0;&#x2F;&#x2F;退出循环，说明查找失败
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>tips:基本数据类型：int、char、double、float等可以直接用运算符“ &#x3D;&#x3D; ”比较<br>&#x3D;&#x3D;但是结构类型的数据元素不可以用“ &#x3D;&#x3D; ”比较&#x3D;&#x3D;<br>例如：</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef struct&#123;
+    int num;
+    int people;
+&#125;Customer;
+
+void test()&#123;
+     Customer a;
+     a.num &#x3D; 1;
+     a.people &#x3D; 1;
+     Customer b;
+     b.num &#x3D; 1;
+     b.people &#x3D; 1;
+    
+    if(a&#x3D;&#x3D;b)&#123;&#x2F;&#x2F;这里会直接报错，无法编译！！！
+         printf(&quot;相等“);
+    &#125;else&#123;
+        printf(&quot;不相等&quot;);
+	&#125;
+&#125;
+&#x2F;&#x2F;正确示例
+void test()&#123;
+     Customer a;
+     a.num &#x3D; 1;
+     a.people &#x3D; 1;
+     Customer b;
+     b.num &#x3D; 1;
+     b.people &#x3D; 1;
+    
+    if(a。mun&#x3D;&#x3D;b.num &amp;&amp; a.people&#x3D;&#x3D;b.people)&#123;&#x2F;&#x2F;需要依次对比各个分量来判断两个结构                                                体是否相等
+         printf(&quot;相等“);
+    &#125;else&#123;
+        printf(&quot;不相等&quot;);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="按值查找的时间复杂度"><a href="#按值查找的时间复杂度" class="headerlink" title="按值查找的时间复杂度"></a>按值查找的时间复杂度</h3><p>  问题规模 n&#x3D;L.length<br> 最好情况：要查找的元素在表头<br>           循环1次；此时的时间复杂度为O(1);<br>最坏情况：要查找的元素在表尾<br>          循环n次：此时的时间复杂度为O(n);<br>平均情况：假设目标元素出现在任何位置的概率相同都为p&#x3D;1&#x2F;n;<br>         易知当目标元素在第n位时，查找的次数为n;<br>         则平均循环次数为：(1+2+3+…+n)*1&#x2F; n &#x3D; (n+1)&#x2F;2   时间复杂度为O(n)</p>
 
                 
             </div>
@@ -443,7 +480,7 @@ return 0;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://xiaomqaq.github.io/magichouse.github.io/magichouse.github.io/2024/03/10/%E9%A1%BA%E5%BA%8F%E8%A1%A8(%E4%B8%80)/">https://xiaomqaq.github.io/magichouse.github.io/magichouse.github.io/2024/03/10/%E9%A1%BA%E5%BA%8F%E8%A1%A8(%E4%B8%80)/</a>
+                    <a href="https://xiaomqaq.github.io/magichouse.github.io/magichouse.github.io/2024/03/13/%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%89%EF%BC%88%E6%9F%A5%E6%89%BE%EF%BC%89/">https://xiaomqaq.github.io/magichouse.github.io/magichouse.github.io/2024/03/13/%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%89%EF%BC%88%E6%9F%A5%E6%89%BE%EF%BC%89/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -524,9 +561,52 @@ return 0;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/magichouse.github.io/2024/03/13/%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%89%EF%BC%88%E6%9F%A5%E6%89%BE%EF%BC%89/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/magichouse.github.io/medias/featureimages/10.jpg" class="responsive-img" alt="顺序表三 （查找）">
+                        
+                        <span class="card-title">顺序表三 （查找）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/magichouse.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    数据结构
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/magichouse.github.io/2024/03/12/%E9%A1%BA%E5%BA%8F%E8%A1%A8%EF%BC%88%E4%BA%8C%EF%BC%89/">
                     <div class="card-image">
@@ -544,49 +624,8 @@ return 0;
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-03-12
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/magichouse.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
-                                    数据结构
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/magichouse.github.io/2024/03/10/%E9%A1%BA%E5%BA%8F%E8%A1%A8(%E4%B8%80)/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/magichouse.github.io/medias/featureimages/2.jpg" class="responsive-img" alt="顺序表（一）">
-                        
-                        <span class="card-title">顺序表（一）</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-12
                             </span>
                         <span class="publish-author">
                             
@@ -600,7 +639,6 @@ return 0;
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
