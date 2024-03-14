@@ -4,8 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="404, myblog">
-    <meta name="description" content="myblog">
+    <meta name="keywords" content="单链表（一）, myblog">
+    <meta name="description" content="什么是单链表？单链表（Singly Linked List）是一种常见的线性数据结构，它由一系列节点组成，每个节点包含两部分：数据和一个指向下一个节点的引用（指针或链接）。
+单链表与顺序表的优缺点顺序表：优点：可以随机存取，存储密度高。
+缺">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +19,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>404 | myblog</title>
+    <title>单链表（一） | myblog</title>
     <link rel="icon" type="image/png" href="/magichouse.github.io/favicon.png">
     
 
@@ -265,29 +267,16 @@
 
 </header>
 
-    <style type="text/css">
-    /* don't remove. */
-    .about-cover {
-        height: 90.2vh;
-    }
-</style>
-<div class="bg-cover pd-header about-cover">
-    <div class="container">
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/magichouse.github.io/medias/featureimages/14.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
-            <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+            <div class="col s12 m12 l12">
                 <div class="brand">
-                    <div class="title center-align">
-                        404 Sorry 您找的页面不存在！
-                    </div>
-                    <div class="title center-align">
-                        试试右上角的<span style="color:blue;font-weight:bold">搜索</span>功能？
-                    </div>
-                    <div class="title center-align">
-                        <a href="/" target="_blank">返回首页</a>
-                    </div>
-                    <div class="description center-align">
-                        Oops～，我崩溃了！找不到你想要的页面 :(
-                    </div>
+                    <h1 class="description center-align post-title">单链表（一）</h1>
                 </div>
             </div>
         </div>
@@ -295,11 +284,430 @@
 </div>
 
 
-    <script>
-        // 每天切换 banner 图.  Switch banner image every day.
-        var bannerUrl = "/magichouse.github.io/medias/banner/" + new Date().getDay() + '.jpg';
-        $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/magichouse.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                数据结构
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2024-03-14
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    554
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    2 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/magichouse.github.io/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="什么是单链表？"><a href="#什么是单链表？" class="headerlink" title="什么是单链表？"></a>什么是单链表？</h2><p>单链表（Singly Linked List）是一种常见的线性数据结构，它由一系列节点组成，每个节点包含两部分：数据和一个指向下一个节点的引用（指针或链接）。</p>
+<h3 id="单链表与顺序表的优缺点"><a href="#单链表与顺序表的优缺点" class="headerlink" title="单链表与顺序表的优缺点"></a>单链表与顺序表的优缺点</h3><h4 id="顺序表："><a href="#顺序表：" class="headerlink" title="顺序表："></a>顺序表：</h4><h5 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h5><p>可以随机存取，存储密度高。</p>
+<h5 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h5><p>要求大片的连续空间，改变容量不方便。</p>
+<h4 id="单链表："><a href="#单链表：" class="headerlink" title="单链表："></a>单链表：</h4><h5 id="优点：-1"><a href="#优点：-1" class="headerlink" title="优点："></a>优点：</h5><p>不要求大片连续空间，改变容量方便。</p>
+<h5 id="缺点：-1"><a href="#缺点：-1" class="headerlink" title="缺点："></a>缺点：</h5><p>不可以随机存取，要耗费一定空间存放指针。</p>
+<h2 id="单链表代码部分"><a href="#单链表代码部分" class="headerlink" title="单链表代码部分"></a>单链表代码部分</h2><h3 id="定义单链表"><a href="#定义单链表" class="headerlink" title="定义单链表"></a>定义单链表</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef struct LNode &#123;&#x2F;&#x2F;定义单链表结点类型
+	int data;&#x2F;&#x2F;每个结点存放一个数据元素
+	struct LNode* next;&#x2F;&#x2F;指针指向下一个结点
+&#125;LNode,*LinkList;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>typedef关键字：数据类型重命名<br>typedef &lt;数据类型&gt; &lt;别名&gt;     例如本例中的：typedef struct LNode {…} LNode,  * LinkList;相当于 typedef struct LNode  LNode;typedef struct LNode * LinkList;这两句。</p>
+<h3 id="单链表初始化"><a href="#单链表初始化" class="headerlink" title="单链表初始化"></a>单链表初始化</h3><h4 id="不带头结点的单链表"><a href="#不带头结点的单链表" class="headerlink" title="不带头结点的单链表"></a>不带头结点的单链表</h4><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;&#x2F;初始化单链表(不带头结点)
+bool InitList(LinkList&amp; L) &#123;
+	L &#x3D; NULL;&#x2F;&#x2F;空表，暂时没有结点。防止之前的脏数据
+	return true;
+&#125;
+
+&#x2F;&#x2F;判断单链表是否为空（不带头结点）
+bool Empty(LinkList L) &#123;
+	if (L &#x3D;&#x3D; NULL)
+		return true;
+	else
+		return false;&#x2F;&#x2F;直接return(L&#x3D;NULL);也可以
+&#125;
+
+void test() &#123;
+	LinkList L;&#x2F;&#x2F;声明一个指向单链表的指针，此处并没有创建一个结点。
+	&#x2F;&#x2F;初始化一个空表
+	InitList(L);
+ 
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>判断不带头结点的单链表是否为空只需要判断头指针是否为空。</p>
+<h4 id="带头结点的单链表"><a href="#带头结点的单链表" class="headerlink" title="带头结点的单链表"></a>带头结点的单链表</h4><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;&#x2F;初始化单链表（带头结点）
+bool InitList1(LinkList&amp; L) &#123;
+	L &#x3D; (LNode*)malloc(sizeof(LNode));&#x2F;&#x2F;分配一个头结点
+	if (L &#x3D; NULL) &#123;&#x2F;&#x2F;内存不足，分配失败
+		return false;
+	&#125;
+	L-&gt;next &#x3D; NULL;&#x2F;&#x2F;头结点之后暂时没有结点
+	return true;
+&#125;
+&#x2F;&#x2F;判断单链表是否为空（带头结点）
+bool Empty1(LinkList L) &#123;
+	if (L-&gt;next &#x3D;&#x3D; NULL)
+		return true;
+	else
+		return false;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>刚创建的头结点是空的，不存储任何数据。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/magichouse.github.io/about" rel="external nofollow noreferrer">Xiao Ming</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://xiaomqaq.github.io/magichouse.github.io/magichouse.github.io/2024/03/14/%E5%8D%95%E9%93%BE%E8%A1%A8%EF%BC%88%E4%B8%80%EF%BC%89/">https://xiaomqaq.github.io/magichouse.github.io/magichouse.github.io/2024/03/14/%E5%8D%95%E9%93%BE%E8%A1%A8%EF%BC%88%E4%B8%80%EF%BC%89/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/magichouse.github.io/about" target="_blank">Xiao Ming</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
     </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/magichouse.github.io/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/magichouse.github.io/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/magichouse.github.io/2024/03/14/%E5%8D%95%E9%93%BE%E8%A1%A8%EF%BC%88%E4%B8%80%EF%BC%89/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/magichouse.github.io/medias/featureimages/14.jpg" class="responsive-img" alt="单链表（一）">
+                        
+                        <span class="card-title">单链表（一）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-14
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/magichouse.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    数据结构
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/magichouse.github.io/2024/03/13/%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%89%EF%BC%88%E6%9F%A5%E6%89%BE%EF%BC%89/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/magichouse.github.io/medias/featureimages/10.jpg" class="responsive-img" alt="顺序表三 （查找）">
+                        
+                        <span class="card-title">顺序表三 （查找）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/magichouse.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    数据结构
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/magichouse.github.io/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/magichouse.github.io/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+
+<!-- 代码块复制 -->
+
+
+<!-- 代码块收缩 -->
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/magichouse.github.io/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
 
 
 
